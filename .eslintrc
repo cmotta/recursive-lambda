@@ -1,0 +1,14 @@
+{
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "comma-dangle": [2, "never"],
+    "func-names": 0,
+    "max-len": 0,
+    "no-shadow": 0,
+    "no-use-before-define": 0,
+    "object-curly-spacing": 0
+  },
+  "extends":"airbnb/base"
+}
