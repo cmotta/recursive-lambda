@@ -11,6 +11,10 @@ class SimpleStatefulRecursiveService {
     this._state = params || {};
   }
 
+  initState(newState) {
+    return Object.assign(this._state, newState);
+  }
+
   get state() {
     return this._state;
   }
@@ -50,7 +54,7 @@ class SimpleStatefulRecursiveService {
   }
 
   _noTimeForNextRecursiveCall() {
-    return !this.completeExecution() && this._getExecutionState() === ExecutionState.IN_PROGRESS && !this._isEnoughTimeLeft();
+    return this._getExecutionState() === ExecutionState.IN_PROGRESS && !this._isEnoughTimeLeft();
   }
 
   _runAction() {
@@ -62,7 +66,7 @@ class SimpleStatefulRecursiveService {
     .then(() => this.execute());
   }
 
-  invokeLambda() {
+  _invokeLambda() {
     return new Promise((resolve, reject) => {
       const payload = this.state;
       const params = {
@@ -78,10 +82,6 @@ class SimpleStatefulRecursiveService {
         }
       });
     });
-  }
-
-  getFinalResult() {
-    return this.state;
   }
 
   get executionThreshold() {
