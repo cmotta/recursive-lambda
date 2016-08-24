@@ -9,7 +9,8 @@ class ExampleRecursiveService extends SimpleStatefulRecursiveService {
   }
 
   /*
-  Specify logic that will be called recursively until termination logic is met
+  Specify logic that will be called recursively until termination logic is met.
+  Ex: load DynamoDB records in batches, publish over SNS and repeat until done.
   */
   action(params = {}) {
     return this.exampleEnigmaticRecursiveFunction(params);

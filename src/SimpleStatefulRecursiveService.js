@@ -27,10 +27,6 @@ class SimpleStatefulRecursiveService {
     return (this.context.getRemainingTimeInMillis() > this.executionThreshold);
   }
 
-  completeExecution() {
-    this.executionState = ExecutionState.COMPLETE;
-  }
-
   execute() {
     if (this._getExecutionState() === ExecutionState.INITIAL) {
       this.executionState = ExecutionState.IN_PROGRESS;

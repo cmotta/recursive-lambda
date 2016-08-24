@@ -34,7 +34,7 @@ describe('ExampleRecursiveService', () => {
 
     describe('#execute()', () => {
       it('executes recursive function 4 times', (done) => {
-        service.execute().then((result) => {
+        service.execute().then(() => {
           sinon.assert.callCount(service.execute, 5);
           sinon.assert.callCount(service._runAction, 4);
           sinon.assert.callCount(service.action, 4);
@@ -51,6 +51,38 @@ describe('ExampleRecursiveService', () => {
       service.execute.restore();
       service._runAction.restore();
       service.action.restore();
+    });
+  });
+
+  context('when there is not enough time to go through all iterations', () => {
+    before(() => {
+      contextStub = sinon.stub(lambdaContext, 'getRemainingTimeInMillis').returns(100000);
+      awsMock.mock('Lambda', 'invoke', 'ok');
+      lambdaClient = new AWS.Lambda();
+      service = new ExampleRecursiveService({}, lambdaClient, lambdaContext);
+      sinon.spy(service, 'execute');
+      sinon.spy(service, '_runAction');
+      sinon.spy(service, 'action');
+      sinon.spy(service, '_invokeLambda');
+    });
+
+    describe('#execute()', () => {
+      it('executes recursive function once and invokes next lambda', (done) => {
+        service.execute().then(() => {
+          sinon.assert.callCount(service.execute, 2);
+          sinon.assert.callCount(service._invokeLambda, 1);
+          done();
+        });
+      });
+    });
+
+    after(() => {
+      awsMock.restore('Lambda');
+      contextStub.restore();
+      service.execute.restore();
+      service._runAction.restore();
+      service.action.restore();
+      service._invokeLambda.restore();
     });
   });
 });
