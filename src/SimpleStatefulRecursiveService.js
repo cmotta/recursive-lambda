@@ -54,7 +54,7 @@ class SimpleStatefulRecursiveService {
   }
 
   runAction() {
-    return this.action(this.state).then(result => this.processResult(result))
+    return this.action(this.state)
     .catch(e => {
       this.errorCallback(e);
       return Promise.resolve();
@@ -96,18 +96,6 @@ class SimpleStatefulRecursiveService {
   */
   action(params = {}) {
     return Promise.resolve();
-  }
-
-  /*
-  Process result of a single action execution
-  Ex: Read records from DynamoDB => store them in a variable,
-  store next page for next action execution
-  You store data in "this.state" and later access as "this.state.lastEvaluatedKey"
-  by calling this.updateState({lastEvaluatedKey: data.lastEvaluatedKey});
-  Also you may publish loaded records to SNS topic before next batch is loaded
-  */
-  processResult(result) {
-    return Promise.resolve(result);
   }
 
   /*
