@@ -12,7 +12,7 @@ chai.use(sinonChai);
 chai.use(chaiAsPromised);
 chai.use(chaiThings);
 
-describe.skip('SimpleStatefulRecursiveService', () => {
+describe('SimpleStatefulRecursiveService', () => {
   const lambdaContext = {
     functionName: 'lambda-function-name',
     getRemainingTimeInMillis: () => {}

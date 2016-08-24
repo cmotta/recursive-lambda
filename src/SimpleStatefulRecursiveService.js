@@ -35,12 +35,12 @@ class SimpleStatefulRecursiveService {
     if (this._getExecutionState() === ExecutionState.INITIAL) {
       this.executionState = ExecutionState.IN_PROGRESS;
       return this._runAction();
+    } else if (this._isExecutionCompleted()) {
+      return this.getFinalResult();
     } else if (this._readyForNextRecursiveCall()) {
       return this._runAction();
     } else if (this._noTimeForNextRecursiveCall()) {
       return this._invokeLambda();
-    } else if (this._isExecutionCompleted()) {
-      return this.getFinalResult();
     }
     return Promise.resolve();
   }
