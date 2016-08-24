@@ -53,7 +53,7 @@ class SimpleStatefulRecursiveService {
     return !this.completeExecution() && this._getExecutionState() === ExecutionState.IN_PROGRESS && !this._isEnoughTimeLeft();
   }
 
-  runAction() {
+  _runAction() {
     return this.action(this.state)
     .catch(e => {
       this.errorCallback(e);
