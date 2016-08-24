@@ -36,7 +36,7 @@ class SimpleStatefulRecursiveService {
       this.executionState = ExecutionState.IN_PROGRESS;
       return this._runAction();
     } else if (this._isExecutionCompleted()) {
-      return this.getFinalResult();
+      return Promise.resolve();
     } else if (this._readyForNextRecursiveCall()) {
       return this._runAction();
     } else if (this._noTimeForNextRecursiveCall()) {
