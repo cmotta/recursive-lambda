@@ -2,7 +2,7 @@
   "name": "recursive-lambda",
   "version": "1.0.0",
   "description": "allows to create recursive AWS lambda services",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "gulp": "gulp",
     "test": "mocha --require babel-register tests/",
