@@ -1,6 +1,6 @@
 {
   "name": "recursive-lambda",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "allows to create recursive AWS lambda services",
   "main": "./lib/index.js",
   "scripts": {
