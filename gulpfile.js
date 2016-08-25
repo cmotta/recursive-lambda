@@ -13,7 +13,10 @@ gulp.task('clear', function(cb) {
 
 gulp.task('build', [ 'clear' ], function() {
   return gulp.src([ SRC_PATH + '/**/*.js' ])
-  .pipe(babel({ blacklist: [ 'useStrict' ] }))
+  .pipe(babel({
+    presets: ['es2015'],
+    plugins: ['transform-object-assign']
+  }))
   .pipe(gulp.dest(LIB_PATH));
 });
 
