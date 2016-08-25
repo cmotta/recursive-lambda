@@ -17,8 +17,3 @@ Developed by [microapps] (http://microapps.com/)
 
 ## License
 recursive-lambda is available under the MIT license. See the LICENSE file for more info.
-
-## TODO
-validate against real world code
-write tests
-write examples
