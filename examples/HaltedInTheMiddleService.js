@@ -38,7 +38,7 @@ class HaltedInTheMiddleService extends SimpleStatefulRecursiveService {
       this.updateState({executionCount, result: 'accumulated dummy result'});
       if (executionCount === 3) {
         /* this is when you realize that it is pointless to continue
-        and it is time halt recursion
+        and it is time to halt recursion
         even though recursion invariant stays true to its values
         and is willing to continue to carry out its mission
         no matter what
