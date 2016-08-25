@@ -3,11 +3,51 @@
 recursive-lambda is a wrapper around recursive code called within AWS Lambda. It solves the problem of running out of execution time.
 Should a lambda hit the time limit, it will invoke new lambda so it could carry on with its business.
 
-## Example story
-Imagine you have data in DynamoDB, and you want to create a report from it. You might not get and process all records on time, because lambda has time limits.
-In addition to time limits, there are DynamoDB limits too. So a solution is to use recursion. Process data recursively until job is done.
-In your code you would need to handle recursive calls as well watch out for remaining time.
-A wrapper class in recursive-lambda will keep track of time and invoke next lambda for you. You are required to provide pure logic by extending the class and overwriting *action*, *processResult* and additional methods if required. With this wrapper, you are free from housekeeping code.
+## Example
+``` javascript
+import Promise from 'bluebird';
+import { SimpleStatefulRecursiveService } from '../src/SimpleStatefulRecursiveService';
+
+class ExampleRecursiveService extends SimpleStatefulRecursiveService {
+
+  constructor(params, lambdaClient, context) {
+    super(params, lambdaClient, context);
+    this.initState({executionCount: 0});
+  }
+
+  /*
+  Specify logic that will be called recursively until termination logic is met.
+  Ex: load DynamoDB records in batches, publish over SNS and repeat until done.
+  */
+  action(params = {}) {
+    return this.exampleEnigmaticRecursiveFunction(params);
+  }
+
+  /*
+  Specify when you want recursion to stop.
+  If you don't overwrite parent implementation,
+  your recursive function will be called exactly once
+  */
+  get executionInvariant() {
+    return this.state.executionCount < 4;
+  }
+
+  /*
+  Specify execution threshold in milliseconds
+  */
+  get executionThreshold() {
+    return 200000;
+  }
+
+  exampleEnigmaticRecursiveFunction(params = {}) {
+    return new Promise((resolve, reject) => {
+      const executionCount = this.state.executionCount + 1;
+      this.updateState({executionCount, result: 'accumulated dummy result'});
+      resolve();
+    });
+  }
+}
+```
 
 ### Contributing
 Contributions are always welcome!
