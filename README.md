@@ -9,7 +9,7 @@ Should a lambda hit the time limit, it will invoke new lambda so it could carry 
 ## Example
 ``` javascript
 import Promise from 'bluebird';
-import { SimpleStatefulRecursiveService } from '../src/SimpleStatefulRecursiveService';
+import { SimpleStatefulRecursiveService } from 'recursive-lambda';
 
 class ExampleRecursiveService extends SimpleStatefulRecursiveService {
 
