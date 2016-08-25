@@ -67,6 +67,7 @@ class SimpleStatefulRecursiveService {
   }
 
   _invokeLambda() {
+    this.beforeInvokeLambda();
     return new Promise((resolve, reject) => {
       const payload = this.state;
       const params = {
@@ -123,6 +124,19 @@ class SimpleStatefulRecursiveService {
   */
   get executionInvariant() {
     return false;
+  }
+
+  /*
+  Before next lambda is invoked
+  you may save some intermediate state
+  Ex: In report aggregator function,
+  you could store an intermediate result aka report
+  instead of passing array of reports/records to the next lambda
+  Alternatively, You could do the same with this.updateState somewhere
+  in your function
+  */
+  beforeInvokeLambda() {
+    this.updateState({});
   }
 
 }

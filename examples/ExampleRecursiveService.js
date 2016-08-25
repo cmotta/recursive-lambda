@@ -39,6 +39,10 @@ class ExampleRecursiveService extends SimpleStatefulRecursiveService {
       resolve();
     });
   }
+
+  beforeInvokeLambda() {
+    this.updateState({intermediateResult: 'I am an intermediate result/state'});
+  }
 }
 
 module.exports.ExampleRecursiveService = ExampleRecursiveService;

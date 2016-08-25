@@ -30,6 +30,7 @@ describe('ExampleRecursiveService', () => {
       sinon.spy(service, 'execute');
       sinon.spy(service, '_runAction');
       sinon.spy(service, 'action');
+      sinon.spy(service, 'beforeInvokeLambda');
     });
 
     describe('#execute()', () => {
@@ -38,6 +39,7 @@ describe('ExampleRecursiveService', () => {
           sinon.assert.callCount(service.execute, 5);
           sinon.assert.callCount(service._runAction, 4);
           sinon.assert.callCount(service.action, 4);
+          sinon.assert.callCount(service.beforeInvokeLambda, 0);
           expect(service.state).to.have.property('executionCount', 4);
           expect(service.state).to.have.property('result', 'accumulated dummy result');
           done();
@@ -51,6 +53,7 @@ describe('ExampleRecursiveService', () => {
       service.execute.restore();
       service._runAction.restore();
       service.action.restore();
+      service.beforeInvokeLambda.restore();
     });
   });
 
@@ -64,13 +67,16 @@ describe('ExampleRecursiveService', () => {
       sinon.spy(service, '_runAction');
       sinon.spy(service, 'action');
       sinon.spy(service, '_invokeLambda');
+      sinon.spy(service, 'beforeInvokeLambda');
     });
 
     describe('#execute()', () => {
       it('executes recursive function once and invokes next lambda', (done) => {
         service.execute().then(() => {
           sinon.assert.callCount(service.execute, 2);
+          sinon.assert.callCount(service.beforeInvokeLambda, 1);
           sinon.assert.callCount(service._invokeLambda, 1);
+          expect(service.state).to.have.property('intermediateResult', 'I am an intermediate result/state');
           done();
         });
       });
@@ -83,6 +89,7 @@ describe('ExampleRecursiveService', () => {
       service._runAction.restore();
       service.action.restore();
       service._invokeLambda.restore();
+      service.beforeInvokeLambda.restore();
     });
   });
 });
