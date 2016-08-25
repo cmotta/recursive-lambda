@@ -66,6 +66,8 @@ class SimpleStatefulRecursiveService {
     .then(() => this.execute());
   }
 
+  errorCallback() {}
+
   _invokeLambda() {
     this.beforeInvokeLambda();
     return new Promise((resolve, reject) => {
@@ -136,6 +138,10 @@ class SimpleStatefulRecursiveService {
   in your function
   */
   beforeInvokeLambda() {
+    this.updateState({});
+  }
+
+  onRecursionComplete() {
     this.updateState({});
   }
 
