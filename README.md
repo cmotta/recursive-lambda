@@ -1,4 +1,7 @@
 # recursive-lambda
+[![Version npm](https://img.shields.io/npm/v/recursive-lambda.svg)](https://www.npmjs.com/package/recursive-lambda/)
+[![GitHub stars](https://img.shields.io/github/stars/microapps/recursive-lambda.svg?style=flat-square)](https://github.com/microapps/recursive-lambda/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/microapps/recursive-lambda/master/LICENSE)
 
 recursive-lambda is a wrapper around recursive code called within AWS Lambda. It solves the problem of running out of execution time.
 Should a lambda hit the time limit, it will invoke new lambda so it could carry on with its business.
@@ -52,7 +55,8 @@ class ExampleRecursiveService extends SimpleStatefulRecursiveService {
 ### Contributing
 Contributions are always welcome!
 
-Developed by [microapps] (http://microapps.com/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github) Used in our live products: [MoonMail] (https://moonmail.io/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github) & [MONEI] (https://monei.net/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github)
+Developed by [microapps] (http://microapps.com/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github
+Used in our live products: [MoonMail] (https://moonmail.io/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github) & [MONEI] (https://monei.net/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github)
 
 ## License
 recursive-lambda is available under the MIT license. See the LICENSE file for more info.
