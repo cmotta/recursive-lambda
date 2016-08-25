@@ -54,7 +54,7 @@ class SimpleStatefulRecursiveService {
   }
 
   _noTimeForNextRecursiveCall() {
-    return this._getExecutionState() === ExecutionState.IN_PROGRESS && !this._isEnoughTimeLeft();
+    return this.executionInvariant && this._getExecutionState() === ExecutionState.IN_PROGRESS && !this._isEnoughTimeLeft();
   }
 
   _runAction() {
