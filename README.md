@@ -55,8 +55,8 @@ class ExampleRecursiveService extends SimpleStatefulRecursiveService {
 ### Contributing
 Contributions are always welcome!
 
-Developed by [microapps] (http://microapps.com/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github)
-Used in our live products: [MoonMail] (https://moonmail.io/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github) & [MONEI] (https://monei.net/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github)
+Developed by [microapps](http://microapps.com/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github)
+Used in our live products: [MoonMail](https://moonmail.io/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github) & [MONEI](https://monei.net/?utm_source=recursive-lambda-repo-readme&utm_medium=click&utm_campaign=github)
 
 ## License
 recursive-lambda is available under the MIT license. See the LICENSE file for more info.
